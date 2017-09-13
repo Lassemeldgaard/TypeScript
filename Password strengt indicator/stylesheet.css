@@ -1,0 +1,10 @@
+.password{
+    font-size: 15px;
+    color: red;
+    display: inline;
+}
+.passwordType{
+    font-size: 25px;
+    height: 30px;
+    color: yellow;
+}
