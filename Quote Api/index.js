@@ -7,7 +7,13 @@ app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 var quotes = [{
         title: "Awesome quote",
-        description: 'This is an awesome quote made by lasse'
+        description: 'This is an awesome quote made by lasse',
+        rating: 0
+    },
+    {
+        title: "Awesome quote2",
+        description: 'This is an awesome quote 2 made by lasse',
+        rating: 1
     }];
 app.post("/api", function (req, resp) {
     var result;
@@ -15,7 +21,8 @@ app.post("/api", function (req, resp) {
     if (func === "add") {
         var title = req.body.title;
         var description = req.body.description;
-        quotes.push({ title: title, description: description });
+        var rating = req.body.rating;
+        quotes.push({ title: title, description: description, rating: rating });
         result = "added";
     }
     else if (func === "list") {
@@ -29,6 +36,16 @@ app.post("/api", function (req, resp) {
         var id = req.body.id;
         quotes.splice(id, 1);
         result = "Deleted";
+    }
+    else if (func === "upvote") {
+        var id = req.body.id;
+        quotes[id].rating++;
+        result = "Upvoted";
+    }
+    else if (func === "downvote") {
+        var id = req.body.id;
+        quotes[id].rating--;
+        result = "Downvoted";
     }
     resp.json(result);
 });
