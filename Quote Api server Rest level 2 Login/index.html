@@ -1,0 +1,33 @@
+<form action="http://localhost:3000/quotes/add" method="post">
+    Title: <input type="text" name="title" /> <br/> Description: <input type="text" name="description" /> <br/>
+    <input type="submit" value="add" /><br/>
+</form>
+
+<form action="http://localhost:3000/quotes" method="post">
+    <input type="submit" value="Listofquotes" />
+</form>
+
+Id: <input type="text" id="id">
+<form action="http://localhost:3000/quotes/show/" method="post" onsubmit="this.action += document.getElementById('id').value">
+    <input type="submit" value="ShowSpecificQuote">
+</form>
+
+<form action="http://localhost:3000/quotes/" method="post" onsubmit="this.action += document.getElementById('id').value + '/upvote'">
+    <input type="submit" value="upvote by id">
+</form>
+
+<form action="http://localhost:3000/quotes/" method="post" onsubmit="this.action += document.getElementById('id').value + '/downvote'">
+    <input type="submit" value="downvote by id">
+</form>
+
+<form action="http://localhost:3000/quotes/" method="post" onsubmit="this.action += document.getElementById('id').value + '/delete'">
+    <input type="submit" value="delete by id">
+</form>
+
+<form action="http://localhost:3000/quotes/newest" method="post">
+    <input type="submit" value="Newest quotes" />
+</form>
+
+<form action="http://localhost:3000/quotes/highestrated" method="post">
+    <input type="submit" value="Highest Rated" />
+</form>
