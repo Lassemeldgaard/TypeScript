@@ -19,9 +19,13 @@
         });
         socket.on('userSet', function (data) {
             user = data.username;
-            document.body.innerHTML = ' <form id="chatform" onsubmit="return sendMessage()" action=""><input type = "text" id = "message">\
-     <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
-     <div id = "message-container"></div> </form>';
+            document.getElementById("message").style.display = "inline"
+            document.getElementById("sendmsg").style.display = "inline"
+            document.getElementById("message-container").style.display = "inline"
+            document.getElementById("error-container").style.display = "none"
+            document.getElementById("name").style.display = "none"
+            document.getElementById("loginbutton").style.display = "none"
+
         socket.emit('updatehistory')
         });
         
@@ -30,7 +34,7 @@
             if (msg) {
               
                 socket.emit('msg', { message: msg, user: user });
-                document.forms["chatform"].reset();
+                document.forms["msgform"].reset();
                 return false;
             }
         }
@@ -42,7 +46,7 @@
         });
         socket.on('history', function (board) {
             if (user) {
-                document.getElementById('message-container').innerHTML += JSON.stringify(board)
+                document.getElementById('message-container').innerHTML += board
             }
         })
 
@@ -52,15 +56,16 @@
 
 <body>
     <form id="chatform" onsubmit="return setUsername()" action="">
-
-   
     <div id="error-container"></div>
-    
-    
     <input id="name" type="text" name="name" value="" placeholder="Enter your name!">
-    <button type="button" name="button" onclick="setUsername()">
+    <button type="button" id="loginbutton" name="button" onclick="setUsername()">
            Let me chat!
         </button>
+    </form>
+    <form id="msgform" onsubmit="return sendMessage()" action="">
+        <input type = "text" id = "message" style="display:none">
+        <button type = "button" id="sendmsg" name = "button" onclick = "sendMessage()" style="display:none"> Send </button>
+        <div id = "message-container"style="display:none"></div> 
     </form>
 </body>
 
