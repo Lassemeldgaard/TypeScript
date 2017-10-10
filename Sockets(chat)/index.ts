@@ -21,12 +21,24 @@ app.get('/', (req, resp) =>{
     });   
 });
 */
-io.on('connection', function(socket){
+/*io.on('connection', function(socket){
     console.log("someone connected");
     socket.on('chat message', function(msg){
     console.log('message: ' + msg);
       socket.emit('chat message', msg)
     });
+  });*/
+  let users: any = [];
+  io.on('connection', function(socket) {
+     console.log('A user connected');
+     socket.on('setUsername', function(data) {
+        if(users.indexOf(data) > -1) {
+           users.push(data);
+           socket.emit('userSet', {username: data});
+        } else {
+           socket.emit('userExists', data + ' username is taken! Try some other username.');
+        }
+     })
   });
 
 http.listen(3000, () =>{

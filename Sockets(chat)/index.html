@@ -19,7 +19,6 @@
                 $('#messages').append($('<p>').text(msg));
             });
         });
-
     </script>
 
 
@@ -73,10 +72,13 @@
 </head>
 
 <body>
-    <ul id="messages"></ul>
-    <form action="">
-        <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+        <input type = "text" name = "name" value = "" placeholder = "Enter your name!">
+        <button type = "button" name = "button">Let me chat!</button>
+        
+        <ul id="messages"></ul>
+        <form action="">
+            <input id="m" autocomplete="off" hidden /><button hidden >send</button>
+        </form>
 </body>
 
 </html>
