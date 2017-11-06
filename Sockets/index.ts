@@ -33,8 +33,9 @@ io.on('connection', function (socket) {
     socket.on('updatehistory', function(){
         let board = fs.readFileSync("board.txt", "utf8");
         console.log(board);
-        socket.emit('history', board);
-        
+        socket.emit('history', board);              
+    })
+    socket.on('whisper', function(data){
         
     })
 });
