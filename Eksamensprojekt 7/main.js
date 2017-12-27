@@ -74,7 +74,7 @@ var Student = /** @class */ (function () {
         return console.log(result.toString());
     };
     Student.prototype.PrintBeerBelly = function () {
-        this.beers.sort(function (a, b) { return a.percentage > b.percentage ? -1 : 1; });
+        this.beers.sort(function (a, b) { return a.percentage < b.percentage ? -1 : 1; });
         for (var i = 0; i < this.beers.length; i++) {
             var beer = this.beers[i];
             console.log(beer.toString());

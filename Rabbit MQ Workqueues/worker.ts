@@ -5,6 +5,7 @@ amqp.connect('amqp://localhost', function(err, conn){
         let q = 'task_queue1';
 
         ch.assertQueue(q, {durable: true});
+        ch.prefetch(1);
 
         console.log(" [*] waiting for messages in %s. To exit press CTRL+C", q);
         ch.consume(q, function(msg){
@@ -15,7 +16,7 @@ amqp.connect('amqp://localhost', function(err, conn){
                 
             }, secs * 1000);
             
-        }, {noAck: true});
+        }, {noAck: false});
         
     });
 });
